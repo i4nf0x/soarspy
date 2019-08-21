@@ -1,0 +1,44 @@
+{% extends "page.html" %}
+
+{% block content %}
+
+<h1 class="mt-4">Flight days</h1>
+
+<form method="get" action="/flight-days">
+    <select name="date">
+        {% for flight_day in flight_days: %}
+        <option value="{{flight_day}}">{{flight_day}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Change</button>
+</form>
+
+{% if airplanes!=None: %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">address</th>
+            <th scope="col">first seen</th>
+            <th scope="col">last seen</th>
+            <th scope="col">max QNH</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for airplane in airplanes: %}
+        <tr>
+            <td>{{airplane['address']}}</td>
+            <td>{{airplane['first_seen']}}</td>
+            <td>{{airplane['last_seen']}}</td>
+            <td>{{airplane['max_qnh']}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endif %}
+
+
+
+
+{% endblock %}
